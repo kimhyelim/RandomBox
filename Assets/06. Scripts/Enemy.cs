@@ -9,52 +9,24 @@ public class Enemy : MonoBehaviour {
 		Attack
 	}
 
-	public string targetTag;
 	public NavMeshAgent agent;
-	public int hp;
-
 	public CharacterController controller;
+
+	public string targetTag;
 	public AttackScope attackScope;
 	public float attackDelay; // 공격 딜레이.
 	public float attackDamage; // 공격력.
+	public int hp;
+
 
 	private GameObject target;
 	private Transform targetTrans;
 
-	private Transform trans;
-
 	private State state;
 
+	private Transform trans;
 	int hitIdex = 0;
 
-	public IEnumerator hit( AttackHit hit ) {
-		state = State.Hit;
-		hp -= Mathf.CeilToInt( hit.damage );
-		Debug.Log("e hit");
-		if ( hp <= 0 ) {
-			die();
-		}
-		else {
-			var attackerTrans = hit.go.transform;
-			Vector3 attackerPos = attackerTrans.localPosition;
-			Vector3 hitDir = ( trans.localPosition - attackerPos ).normalized;
-
-			agent.Stop();
-
-			float backwardTime = 0.5f;
-			float t = 0;
-			hitIdex++;
-			int curHitIdex = hitIdex;
-			while ( t < backwardTime && curHitIdex == hitIdex ) {
-				t += Time.deltaTime;
-				controller.Move( ( backwardTime - t ) * 0.15f * hitDir );
-				yield return null;
-			}
-			if ( curHitIdex == hitIdex )
-				StartCoroutine( move() );
-
-		}
-	}
 
 
 	void Start() {
@@ -78,6 +50,35 @@ public class Enemy : MonoBehaviour {
 
 	}
 
+	public IEnumerator hit(AttackHit hit) {
+		state = State.Hit;
+		hp -= Mathf.CeilToInt(hit.damage);
+		Debug.Log("e hit");
+		if (hp <= 0) {
+			die();
+		}
+		else {
+			var attackerTrans = hit.go.transform;
+			Vector3 attackerPos = attackerTrans.localPosition;
+			Vector3 hitDir = (trans.localPosition - attackerPos).normalized;
+
+			agent.Stop();
+
+			float backwardTime = 0.5f;
+			float t = 0;
+			hitIdex++;
+			int curHitIdex = hitIdex;
+			while (t < backwardTime && curHitIdex == hitIdex) {
+				t += Time.deltaTime;
+				controller.Move((backwardTime - t) * 0.15f * hitDir);
+				yield return null;
+			}
+			if (curHitIdex == hitIdex)
+				StartCoroutine(move());
+
+		}
+	}
+
 	IEnumerator attack() {
 		state = State.Attack;
 		//GUIDebug.Log("Attack : " + gameObject.name);
@@ -97,8 +98,7 @@ public class Enemy : MonoBehaviour {
 
 		state = State.Idle;
 	}
-
-
+	
 	IEnumerator move() {
 		state = State.Move;
 		agent.Resume();
