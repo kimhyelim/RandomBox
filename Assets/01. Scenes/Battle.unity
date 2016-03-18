@@ -674,7 +674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &988678451
 Transform:
   m_ObjectHideFlags: 0
@@ -689,7 +689,7 @@ Transform:
   - {fileID: 614994259}
   - {fileID: 1279137368}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!143 &988678452
 CharacterController:
   m_ObjectHideFlags: 0
@@ -718,13 +718,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a701a15306dd48e44990666d599a9d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Player
   agent: {fileID: 988678454}
-  hp: 10
   controller: {fileID: 988678452}
+  targetTag: Player
   attackScope: {fileID: 614994260}
   attackDelay: 1.5
   attackDamage: 1
+  hp: 10
 --- !u!195 &988678454
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationScale: .300000012
-  speed: 6
+  speed: 10
   jumpSpeed: 8
   gravity: 20
   attackScope: {fileID: 969638933}
@@ -812,7 +812,6 @@ Transform:
   - {fileID: 2032633619}
   - {fileID: 969638932}
   - {fileID: 1792352512}
-  - {fileID: 2009408610}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!208 &1247189316
@@ -1175,7 +1174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!143 &1949709680
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1204,13 +1203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a701a15306dd48e44990666d599a9d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Player
   agent: {fileID: 1949709683}
-  hp: 10
   controller: {fileID: 1949709680}
+  targetTag: Player
   attackScope: {fileID: 1424741656}
   attackDelay: 1.5
   attackDamage: 1
+  hp: 10
 --- !u!195 &1949709683
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1245,7 +1244,7 @@ Transform:
   - {fileID: 1424741658}
   - {fileID: 1863550246}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &2009408605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1257,7 @@ GameObject:
   - 92: {fileID: 2009408608}
   - 124: {fileID: 2009408607}
   - 81: {fileID: 2009408606}
+  - 114: {fileID: 2009408611}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1326,12 +1326,25 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2009408605}
-  m_LocalRotation: {x: .30070582, y: 0, z: 0, w: .953716934}
-  m_LocalPosition: {x: 0, y: 5.5, z: -7}
+  m_LocalRotation: {x: .281799167, y: 0, z: 0, w: .959473431}
+  m_LocalPosition: {x: 8.94999981, y: 4.5, z: -19.1700001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1247189315}
+  m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &2009408611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2009408605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b903fbd7d419c2d45b906548503e10f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1247189315}
+  distance: {x: 0, y: 4.5, z: -7}
 --- !u!1 &2032633618
 GameObject:
   m_ObjectHideFlags: 0

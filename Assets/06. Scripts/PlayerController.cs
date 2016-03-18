@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 	private State state;
 
 	private Transform trans;
-	private Vector3 lastMousePos;
+	private Vector3 lastMousePos, lastPlayerPos;
 	private int hitIdex = 0;
 
 
@@ -48,20 +48,27 @@ public class PlayerController : MonoBehaviour {
 	void Start() {
 		state = State.Default;
 		lastMousePos = Input.mousePosition;
+		lastPlayerPos = trans.position;
 	}
 
 	void Update() {
 
 		// 마우스 이동으로 캐릭터 회전.
-		float mouseDeltaX = (Input.mousePosition - lastMousePos).x;
-		trans.Rotate(Vector3.up, mouseDeltaX * rotationScale);
-		
-		lastMousePos = Input.mousePosition;
+		//float mouseDeltaX = (Input.mousePosition - lastMousePos).x;
+		//trans.Rotate(Vector3.up, mouseDeltaX * rotationScale);
+
+		//lastMousePos = Input.mousePosition;
+
+
+
+		//Vector3 dir = new Vector3( Input.GetAxis( "Horizontal" ), 0, Input.GetAxis( "Vertical" ) );
+
+
 
 		// 이동 처리.
 		if (controller.isGrounded) {
 			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-			moveDirection = trans.TransformDirection(moveDirection);
+			//moveDirection = trans.TransformDirection(moveDirection);
 			moveDirection *= speed;
 			//if (Input.GetButton("Jump"))
 			//	moveDirection.y = jumpSpeed;
@@ -69,10 +76,17 @@ public class PlayerController : MonoBehaviour {
 		}
 		moveDirection.y -= gravity * Time.deltaTime;
 		controller.Move(moveDirection * Time.deltaTime);
-
-		//if ( moveDirection.x > 0f || moveDirection.z > 0f )
-		//	trans.forward = moveDirection.normalized;
+		
+		Vector3 dir = new Vector3( moveDirection.x, 0f, moveDirection.z).normalized;
+		if(dir.magnitude > 0f)
+			trans.forward = dir;
+		
 		//trans.LookAt();
+
+		//Vector3 deltaPos = trans.position - lastPlayerPos;
+		//trans.LookAt( trans.position + deltaPos );
+
+		//lastPlayerPos = trans.position;
 
 		// 공격.
 		if (Input.GetMouseButtonDown(0)) {
