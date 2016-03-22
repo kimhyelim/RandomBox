@@ -38,6 +38,7 @@ public class PlayerWalk : MonoBehaviour {
 		moveDirection.y -= gravity * Time.deltaTime;
 		controller.Move( moveDirection * Time.deltaTime );
 
+
 		Vector3 dir = new Vector3( moveDirection.x, 0f, moveDirection.z ).normalized;
 		if ( dir.magnitude > 0f )
 			trans.forward = dir;

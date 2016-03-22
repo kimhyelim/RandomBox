@@ -85,8 +85,10 @@ public class WagonCtrl : MonoBehaviour
             goods = new GameObject[num];
             for (int i = 0; i < num; i++)
             {
+			
                 goods[i] = (GameObject)Instantiate(good, goodsDropPos, Quaternion.identity);
-                goods[i].SendMessage("fall", coll.relativeVelocity);
+				goods[i].SendMessage("fall", coll.relativeVelocity);
+				//goods[i].SendMessage( "fall", Vector3.Reflect( coll.relativeVelocity, coll.contacts[0].normal ) );
 				item.count -= 1;
             }
 
