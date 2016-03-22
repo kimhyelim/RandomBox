@@ -8,7 +8,7 @@ public class AttackHit {
 	public float spasticityTime;
 }
 
-public class PlayerController : MonoBehaviour {
+public class BattlePlayerController : MonoBehaviour {
 	public enum State {
 		Default,
 		Attack,

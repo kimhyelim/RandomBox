@@ -7,6 +7,7 @@ TagManager:
   - NPC
   - PLAYER
   - BUILDING
+  - CART
   layers:
   - Default
   - TransparentFX
