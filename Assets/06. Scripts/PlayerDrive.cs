@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// 운송 조작 컴포넌트.
 public class PlayerDrive : MonoBehaviour {
-	public Rigidbody body;
-	public float speed = 150.0f;
-	public float rotSpeed = 30.0f;
-	public ForceMode mode;
+
+	[SerializeField]
+	Rigidbody body;
+
+	[SerializeField]
+	float speed = 150.0f;
+
+	[SerializeField]
+	float rotSpeed = 30.0f;
+
+	[SerializeField]
+	ForceMode mode;
 	
 
 	// Update is called once per frame
@@ -20,7 +29,6 @@ public class PlayerDrive : MonoBehaviour {
 		}
 		if ( Input.GetKey( KeyCode.A ) ) {
 			body.AddTorque( 0.0f, -rotSpeed, 0.0f, mode );
-
 		}
 		if ( Input.GetKey( KeyCode.D ) ) {
 			body.AddTorque( 0.0f, rotSpeed, 0.0f, mode );

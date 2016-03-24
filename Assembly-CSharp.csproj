@@ -45,17 +45,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\06. Scripts\AttackScope.cs" />
+     <Compile Include="Assets\06. Scripts\Battle\AttackScope.cs" />
+     <Compile Include="Assets\06. Scripts\Battle\BattlePlayerController.cs" />
+     <Compile Include="Assets\06. Scripts\Battle\Enemy.cs" />
      <Compile Include="Assets\06. Scripts\CameraCtrl.cs" />
-     <Compile Include="Assets\06. Scripts\DashCtrl.cs" />
-     <Compile Include="Assets\06. Scripts\DropFishCtrl.cs" />
-     <Compile Include="Assets\06. Scripts\Enemy.cs" />
      <Compile Include="Assets\06. Scripts\GUIDebug.cs" />
-     <Compile Include="Assets\06. Scripts\HandCartCtrl.cs" />
-     <Compile Include="Assets\06. Scripts\PlayerController.cs" />
-     <Compile Include="Assets\06. Scripts\PlayerMove.cs" />
-     <Compile Include="Assets\06. Scripts\Test.cs" />
-     <Compile Include="Assets\06. Scripts\TransportManagerCtrl.cs" />
+     <Compile Include="Assets\06. Scripts\GameCtrl.cs" />
+     <Compile Include="Assets\06. Scripts\GameMng.cs" />
+     <Compile Include="Assets\06. Scripts\GoodsCtrl.cs" />
+     <Compile Include="Assets\06. Scripts\PlayerDrive.cs" />
+     <Compile Include="Assets\06. Scripts\PlayerWalk.cs" />
+     <Compile Include="Assets\06. Scripts\TransportPoint.cs" />
+     <Compile Include="Assets\06. Scripts\WagonCtrl.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

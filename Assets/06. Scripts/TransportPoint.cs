@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// 운송의 시작지, 도착지 처리.
+// 아직 임시. 기획 되는대로 수정 ㄱㄱ
 public class TransportPoint : MonoBehaviour {
 	public float checkRadius;
 	public int type = 0; // 0 = start,  1 = end
 
 	bool complete = false;
 
-	// Use this for initialization
-	void Start() {
-
-	}
 	
 	public void contact() {
 		if ( complete ) return;

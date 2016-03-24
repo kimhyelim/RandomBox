@@ -3261,6 +3261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1026560039}
   speed: 10
+  gravity: 20
 --- !u!143 &1026560039
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3437,9 +3438,9 @@ MonoBehaviour:
   walkObj: {fileID: 1026560036}
   drivePlayerRenderer: {fileID: 378382781}
   playerDrive: {fileID: 378382779}
-  drivePlaterRigidBody: {fileID: 378382780}
+  drivePlayerRigidBody: {fileID: 378382780}
   startDriveMinimumLength: 3
-  tpsCam: {fileID: 1723983448}
+  camCtrl: {fileID: 1723983448}
 --- !u!4 &1163003620
 Transform:
   m_ObjectHideFlags: 0
