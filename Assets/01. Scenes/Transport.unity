@@ -1921,8 +1921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0000000000000000000000000000000000000000
-  good: {fileID: 168202, guid: 8d788b39a9abd8c4d8ebf0439c955b13, type: 2}
-  goods: []
+  preObj: {fileID: 0}
 --- !u!1 &660605649
 GameObject:
   m_ObjectHideFlags: 0
@@ -5484,8 +5483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0000000000000000000000000000000000000000
-  good: {fileID: 168202, guid: 8d788b39a9abd8c4d8ebf0439c955b13, type: 2}
-  goods: []
+  preObj: {fileID: 0}
 --- !u!1 &1815060846
 GameObject:
   m_ObjectHideFlags: 0
