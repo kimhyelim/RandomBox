@@ -10,7 +10,11 @@ public class CameraCtrl : MonoBehaviour {
 	[SerializeField]	
 	Transform target;
 	[SerializeField]
-	Vector3 distance;
+	float angle = 45f;
+	[SerializeField]
+	float distance = 10f;
+	//[SerializeField]
+	float delayTime = 0.15f;
 	[SerializeField]
 	Type type;
 
@@ -22,28 +26,33 @@ public class CameraCtrl : MonoBehaviour {
 	}
 
 	void LateUpdate() {
+		Vector3 dest = new Vector3 ();
 
-		if ( type == Type.BackView ) {
-			transform.parent = target.transform;
-			transform.localPosition = distance;
-			trans.LookAt( target );
+		if( type == Type.BackView ) {
+			Quaternion q = Quaternion.AngleAxis (angle, target.right);
+			Vector3 dir = q * -target.forward;
+			dest = target.position + dir * distance;
+			
+			//dest = target.position + target.TransformDirection ( distance );
 		}
-		else if ( type == Type.QuarterView ) {
-			transform.parent = null;
-			trans.position = target.position + distance ;
-			trans.LookAt( target );
-		}
+		else if( type == Type.QuarterView ) {
+			Quaternion q = Quaternion.AngleAxis ( angle, Vector3.right );
+			Vector3 dir = q * Vector3.back;
+			dest = target.position + dir * distance;
+		}		
+
+		var delta = dest - transform.position;
+		transform.position += delta * Time.deltaTime / delayTime;
+		trans.LookAt ( target );
+
+#if UNITY_EDITOR
+		if(!Application.isPlaying)
+			transform.position = dest;
+#endif
 	}
 
 	public void setTarget( Transform target ) {
 		this.target = target;
-		if ( type == Type.BackView ) {
-			transform.parent = target.transform;
-			transform.localPosition = distance;
-		}
-		else {
-			transform.parent = null;
-		}
 	}
 
 	public void setType( Type type) {
