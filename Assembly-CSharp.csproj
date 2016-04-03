@@ -57,6 +57,9 @@
      <Compile Include="Assets\06. Scripts\PlayerWalk.cs" />
      <Compile Include="Assets\06. Scripts\TransportPoint.cs" />
      <Compile Include="Assets\06. Scripts\WagonCtrl.cs" />
+     <Compile Include="Assets\06. Scripts\carTest.cs" />
+     <Compile Include="Assets\06. Scripts\trTest.cs" />
+     <Compile Include="Assets\06. Scripts\trTest2.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
