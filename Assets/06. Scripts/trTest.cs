@@ -11,14 +11,16 @@ public class trTest : MonoBehaviour {
 	[SerializeField]
 	float rotSpeed = 30.0f;
 	[SerializeField]
+	ForceMode mode;
+
+	[SerializeField]
 	float maximum = 13.0f;
 
 	[SerializeField]
 	float suppressFactor = 5f;
 
 	[SerializeField]
-	ForceMode mode;
-
+	float downFactor = 5f;
 
 	[SerializeField]
 	Rigidbody[] cars;
@@ -33,13 +35,6 @@ public class trTest : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		//Vector3 c = ( wc[0].transform.position + wc[1].transform.position ) * 0.5f;
-		//c.y = transform.position.y;
-		//      Vector3 cToPosVec = (transform.position - c).normalized;
-		//Quaternion q =  Quaternion.AngleAxis ( 90f, Vector3.up );
-		//Vector3 targetRot = q* cToPosVec;
-
-		//Vector3 dir = transform.forward;
 
 		Ray r = new Ray ( transform.position + Vector3.up * 0.1f, Vector3.down );
 		RaycastHit[] hits = Physics.RaycastAll ( r, 1.0f );
@@ -51,8 +46,65 @@ public class trTest : MonoBehaviour {
 			return;
 		}
 
+
+		Vector3 floorNormal = hits[0].normal;
+		Vector3 orthogonal = Vector3.Cross( Vector3.up, floorNormal );
+		float angle = Vector3.Angle( Vector3.up, floorNormal );
+		var quat = Quaternion.AngleAxis( angle , orthogonal);
+
+		Vector3 forward = quat * transform.forward;
+		Vector3 right = quat * transform.right;
+
+		Debug.DrawRay( transform.position, hits[0].normal, Color.blue );
+		Debug.DrawRay( transform.position, forward, Color.yellow );
+		Debug.DrawRay( transform.position, right, Color.cyan );
+
 		float h = Input.GetAxis ( "Horizontal" );
 		float v = Input.GetAxis ( "Vertical" );
+
+		if ( v != 0f ) {
+			body.AddForce( v * forward * speed, mode );
+		}
+
+
+		if ( h != 0f ) {
+			if ( v != 0f ) {
+				body.AddForce( h * right * rotSpeed, mode );
+			}
+			//forces += h * transform.right * rotSpeed;
+			body.AddTorque( 0f, h * rotSpeed, 0f, mode );
+		}
+		else {
+			foreach( Rigidbody c in cars ) {
+				float playerZ = transform.eulerAngles.z / 360f;
+				float carZ = c.transform.eulerAngles.z / 360f;
+
+				if ( playerZ > 0.5f ) playerZ -= 1.0f;
+				if ( playerZ < -0.5f ) playerZ += 1.0f;
+				if ( carZ > 0.5f ) carZ -= 1.0f;
+				if ( carZ < -0.5f ) carZ += 1.0f;
+
+
+
+				float gap = playerZ - carZ;
+				Debug.Log(gap);
+
+				float torque = gap * downFactor;
+
+				//torque = c.transform.InverseTransformDirection( torque );
+
+				c.AddTorque( c.transform.forward * torque, ForceMode.VelocityChange);
+			 }
+		}
+		
+
+		if (body.velocity.magnitude > maximum) {
+			Vector3 dir = body.velocity.normalized;
+			body.velocity = dir * maximum;
+		}
+
+		suppress( forward );
+
 
 		//Debug.Log(h);
 
@@ -73,65 +125,35 @@ public class trTest : MonoBehaviour {
 
 		//body.AddForce ( new Vector3 ( dir.x * rotSpeed, 0f, dir.z * speed ), mode );
 
-		Vector3 forces = new Vector3();
 
-		if( Input.GetKey ( KeyCode.W ) ) {
-			//body.AddForce ( transform.forward * speed, mode );
+		//if ( body.velocity.magnitude < 0.1f )
+		//	return;
 
-			forces += transform.forward * speed;
-		}
-		if( Input.GetKey ( KeyCode.S ) ) {
-			//body.AddForce(-transform.forward * speed, mode);
-			forces += -transform.forward * speed;
-		}
+		//Vector3 localVelocity = transform.InverseTransformDirection( body.velocity );
 
-		body.AddForce(forces, mode);
+		//bool side_able = true;// Mathf.Abs( localVelocity.z ) > 1.0f;
 
-		//if( body.velocity.magnitude < 0.1f )
-		//	return;		
-
-		if( Input.GetKey ( KeyCode.D ) ) {
-			body.AddForce ( h * transform.right * rotSpeed, mode );
-
-			//forces += h * transform.right * rotSpeed;
-
-			body.AddTorque(0f, h * rotSpeed, 0f, mode);
-
-		}
-		if( Input.GetKey ( KeyCode.A ) ) {
-			body.AddForce ( h * transform.right * rotSpeed, mode );
-
-			//forces += h * transform.right * rotSpeed;
-			body.AddTorque(0f, h * rotSpeed, 0f, mode);
-		}
-
-
-		if (body.velocity.magnitude > maximum) {
-			Vector3 dir = body.velocity.normalized;
-			body.velocity = dir * maximum;
-		}
 
 		//if (forces.sqrMagnitude < 1f) return;
 
 		//float fdotv = Vector3.Dot(forces.normalized, body.velocity.normalized);
 		//float additiveForceRate = 1f - Mathf.Clamp01(fdotv);
 		//body.AddForce(transform.forward * speed * additiveForceRate * 5f, mode);
-		
+
 		//if (fdotv <= 0f) {
 		//	Debug.Log("<= 0f");
 		//}
-		suppress();
-
 	}
 
-	void suppress() {
+
+	void suppress( Vector3 forward ) {
 		if (Input.GetKey(KeyCode.Space)) return;
 
-		float h = Input.GetAxis("Horizontal");
+		//float h = Input.GetAxis("Horizontal");
 
 		//if (h < 0.1f) {
 			foreach (var e in cars) { 
-				Vector3 fdir = transform.forward.normalized;
+				Vector3 fdir = forward.normalized;
 				Vector3 cdir = e.velocity.normalized;
 
 				float s = e.velocity.magnitude;
