@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerDrive : MonoBehaviour {
 
 	[SerializeField]
-	Rigidbody body;
+	public Rigidbody body;
 
 	[SerializeField]
 	float speed = 150.0f;

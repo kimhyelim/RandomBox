@@ -5,18 +5,12 @@ using System.Collections;
 public class GameCtrl : MonoBehaviour {
 
 	[SerializeField]
-	GameObject driveObj, walkObj;	// 운송중인 플레이어 게임오브젝트, 걷는중인 플레이어 게임오브젝트.
-									// active 토글용.
-
+	GameObject walkObj;	// 운송중인 플레이어 게임오브젝트, 걷는중인 플레이어 게임오브젝트.
+						// active 토글용.
+						
 	[SerializeField]
-	Renderer drivePlayerRenderer; // 운송중인 플레이어 게임오브젝트의 렌더러.
-
-	[SerializeField]
-	PlayerDrive playerDrive; // 운송조작 컴포넌트.
-
-	[SerializeField]
-	Rigidbody drivePlayerRigidBody; // 운송 풀레이어의 리지드바디.
-
+	PlayerWalk playerWalk;
+	
 	[SerializeField]
 	float startDriveMinimumLength; // 운송을 시작하기 위한 운송석을 중심으로하는 영역길이(반지름)
 
@@ -28,32 +22,35 @@ public class GameCtrl : MonoBehaviour {
 	TransportPoint[] tpp;
 
 	// Use this for initialization
-	void Start () {
+	IEnumerator Start () {
 		data = GameMng.Inst;
-		activeState(data.state);
 
 		tpp = Object.FindObjectsOfType<TransportPoint>();
+		
+		yield return new WaitForSeconds( 0.2f );
+		HandcartManager.generate( 3 );
+		activeState( data.state );
+		HandcartManager.getCurrentHandcart().rotate(180f);
 	}
+	
 	
 	// 플레이어 상태에따라 오브젝트 변경및 카메라 조작.
 	void activeState(PlayerState state) {
 
 		if (data.state == PlayerState.Walk) {
+			walkObj.SetActive( true );
 
-			playerDrive.enabled = false;
-			drivePlayerRenderer.enabled = false;
-			walkObj.SetActive(true);
+			HandcartManager.getCurrentHandcart().activeDriver( false );
 
-			camCtrl.setTarget(walkObj.transform);
+			camCtrl.setTarget( walkObj.transform );
 			camCtrl.setType(CameraCtrl.Type.QuarterView);
 		}
 		else if (data.state == PlayerState.Drive) {
+			walkObj.SetActive( false );
 
-			playerDrive.enabled = true;
-			drivePlayerRenderer.enabled = true;
-			walkObj.SetActive(false);
+			HandcartManager.getCurrentHandcart().activeDriver(true);
 
-			camCtrl.setTarget(driveObj.transform);
+			camCtrl.setTarget( HandcartManager.getCurrentHandcart().driver.transform );
 			camCtrl.setType(CameraCtrl.Type.BackView);
 		}
 
@@ -66,7 +63,7 @@ public class GameCtrl : MonoBehaviour {
 
 			if ( data.state == PlayerState.Walk ) {
 
-				float dist = Vector3.Distance( driveObj.transform.position, walkObj.transform.position );
+				float dist = Vector3.Distance( walkObj.transform.position, HandcartManager.getCurrentHandcart().getDriverPosition() );
 
 				if (dist <= startDriveMinimumLength) { // 영역안에 포함되면 수송상태로 변경.
 					data.state = PlayerState.Drive;
@@ -87,11 +84,16 @@ public class GameCtrl : MonoBehaviour {
 			else if ( data.state == PlayerState.Drive ) {
 				// 운송상태에서 이동중일때는 못내리게 하기위해
 				// 운송 플레이어의 현재 이동 속력을 체크.
-				if (drivePlayerRigidBody.velocity.magnitude < 1f) {
+				if ( HandcartManager.getCurrentHandcart().driverCtrl.body.velocity.magnitude < 1f) {
 					data.state = PlayerState.Walk;
 
 					activeState(data.state);
-					walkObj.transform.position = driveObj.transform.position + driveObj.transform.right * 2f;
+
+					//var cart = HandcartManager.getCurrentHandcart();
+					//cart.setDriver( null );
+					//walkObj.transform.position = cart.getDriverPosition() + playerTrans.right * 2f;
+					var driver = HandcartManager.getCurrentHandcart().driver;
+					walkObj.transform.position = driver.transform.position + driver.transform.right * 2f;
 				}
 			}
 
@@ -101,14 +103,14 @@ public class GameCtrl : MonoBehaviour {
 
 
 
-	void OnGUI() {
-		GUILayout.TextField( "소지금 : " + data.money );
-		Item item = data.getItem(0);
-		if ( item == null ) {
-			GUILayout.TextField( "생선 : " + 0 );
-		}
-		else {
-			GUILayout.TextField( "생선 : " + item.count );
-		}
-	}
+	//void OnGUI() {
+	//	GUILayout.TextField( "소지금 : " + data.money );
+	//	Item item = data.getItem(0);
+	//	if ( item == null ) {
+	//		GUILayout.TextField( "생선 : " + 0 );
+	//	}
+	//	else {
+	//		GUILayout.TextField( "생선 : " + item.count );
+	//	}
+	//}
 }
