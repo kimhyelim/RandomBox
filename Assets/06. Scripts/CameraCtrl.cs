@@ -11,123 +11,106 @@ public class CameraCtrl : MonoBehaviour {
 
 	[SerializeField]
 	Transform target;
+
 	[SerializeField]
 	float angle = 45f;
+
 	[SerializeField]
 	float distance;
+
 	[SerializeField]
 	float yCameraUp;        //카메라가 얼만큼 위에있는가.
+
 	[SerializeField]
 	float delayTime = 0.15f;
+
 	[SerializeField]
 	Type type;
+
+	[SerializeField]
+	string obstacleTagName;
+	[SerializeField]
+	float minimumDistance;
+	
+
+
 	private Transform trans;
 
+	
+	Vector3 dest; // 카메라 목적 위치.
+	Vector3 targetPos; // 카메라가 바라볼 위치.
+	Vector3 dir; // 타겟의 위치로 부터의 카메라의 방향.
 
-	//float distBuilding = 1000.0f;
-	//bool IsBuilding = false;
-	//Vector3 pos;
-	//Ray ray;
-	float basicDist;
+	Quaternion quat; // 회전 임시 변수.
 
-	Vector3 dir;
 	void Awake() {
-		distance = 10f;
 		trans = transform;
-		basicDist = distance;
 	}
 
 	void LateUpdate() {
-
-		Vector3 dest = new Vector3();
-
-		Vector3 vCenter;        //카메라가 보는 곳
-		vCenter = target.position;
-		vCenter.y += yCameraUp;
-		trans.LookAt( vCenter );
-
-		Quaternion q;
-
-		seleteDistance();
+		targetPos = target.position;
+		targetPos.y += yCameraUp;
 
 
 		if ( type == Type.BackView ) {
-			q = Quaternion.AngleAxis( angle, target.right );
-			dir = q * -target.forward;
-			dest = target.position + dir * distance;
+			quat = Quaternion.AngleAxis( angle, target.right );
+			dir = quat * -target.forward;
 
-			//dest = target.position + target.TransformDirection ( distance );
+			//dest = targetPos + target.TransformDirection ( distance );
 		}
 		else if ( type == Type.QuarterView ) {
-			q = Quaternion.AngleAxis( -angle, Vector3.right );
-			dir = q * Vector3.forward;
-			dest = target.position + dir * distance;
+			quat = Quaternion.AngleAxis( -angle, Vector3.right );
+			dir = quat * Vector3.forward;
 		}
 
+		bool existObstacle = selectDistance(out dest);
+
+		if( !existObstacle )
+			dest = targetPos + dir * distance;
 
 
+		var delta = dest - trans.position;
+		trans.position += delta * Time.deltaTime / delayTime;
+		
 
-		var delta = dest - transform.position;
-		transform.position += delta * Time.deltaTime / delayTime;
-
-		Vector3 lookAtPos = target.position;
-		lookAtPos.y += yCameraUp;
-		trans.LookAt( lookAtPos );
-
+		trans.LookAt(targetPos);
 
 #if UNITY_EDITOR
 		if ( !Application.isPlaying )
-			transform.position = dest;
+			trans.position = dest;
 #endif
 	}
 
+	//플레이어가 카메라가 원래 있어야하는 위치로  레이를쏜다
+	bool selectDistance( out Vector3 position ) {
+		RaycastHit[] hits = Physics.RaycastAll(targetPos, dir, distance);
+		
+		//if( hits.Length != 0 ) {
+		//	Debug.Log("obstacle " + hits[0].collider.gameObject.name);
+		//}
 
-	void seleteDistance() {
-		//-------------------------------------------------------------------------------------------------------------------------------
-		//플레이어가 카메라가 원래 있어야하는 위치로  레이를쏜다
-		//거리내에 충돌한 건물이 없으면 다시 원상태로
+		for( int i = 0; i < hits.Length; ++i ) {
+			var hitDist = hits[i].distance;
 
-		float distBuilding = 1000.0f;
-		bool IsBuilding = false;
+			if( hits[i].collider.CompareTag(obstacleTagName) 
+				&& hitDist < distance) {
 
-
-		Vector3 _dest = target.position + dir * basicDist;
-		Ray _ray = new Ray( target.position, ( _dest - target.position ) );
-		Debug.DrawRay( _ray.origin, _ray.direction * 100.0f, Color.blue );
-		Vector3 pos = Vector3.zero;
-
-
-
-		RaycastHit[] hits = Physics.RaycastAll( _ray );            //Hit정보를 가져온다.
-		foreach ( RaycastHit hit in hits ) {
-			if ( hit.collider.tag == "BUILDING" ) {
-				if ( distBuilding > Vector3.Distance( target.position, hit.point ) ) {
-					distBuilding = Vector3.Distance( target.position, hit.point );
-					pos = hit.point;
-
+				if( hitDist > minimumDistance ) {
+					position = hits[i].point;
 				}
-				IsBuilding = true;
-
+				else {
+					position = targetPos + dir * minimumDistance;
+				}
+				
+				return true;
 			}
 		}
 
-		if ( distBuilding != 1000 ) {
-			distance = Vector2.Distance( new Vector2( target.position.x, target.position.z ), new Vector2( pos.x, pos.z ) );
-			yCameraUp = 1;
-		}
-		if ( IsBuilding == false ) {
-			distBuilding = 1000f;
-			distance = basicDist;
-		}
-		if(distance>basicDist)
-		{
-			distance = basicDist;
-		}
-		if ( ( distance ) < 2 ) {
-			distance = 2f;
-		}
-		////-------------------------------------------------------------------------------------------------
+		position = Vector3.zero;
+		return false;
 	}
+	
+
 	public void setTarget( Transform target ) {
 		this.target = target;
 	}
