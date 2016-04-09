@@ -2512,11 +2512,11 @@ MonoBehaviour:
   body: {fileID: 5490030}
   colliders: {fileID: 195994}
   meshs: {fileID: 102618}
-  speed: .800000012
-  rotSpeed: 2
+  speed: 1
+  rotSpeed: 1
   mode: 2
   maximum: 15
-  suppressFactor: 3
+  suppressFactor: 0
   downFactor: 0
   cars: []
 --- !u!135 &13526122
@@ -2699,11 +2699,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: suppressFactor
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
-      value: .800000012
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maximum
@@ -2729,6 +2729,10 @@ Prefab:
       propertyPath: meshs
       value: 
       objectReference: {fileID: 102618}
+    - target: {fileID: 0}
+      propertyPath: rotSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118618}

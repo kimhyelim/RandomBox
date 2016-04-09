@@ -554,7 +554,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136772}
   serializedVersion: 2
-  m_Mass: 250
+  m_Mass: 300
   m_Drag: .00999999978
   m_AngularDrag: .00999999978
   m_UseGravity: 1
@@ -610,7 +610,7 @@ WheelCollider:
   m_Mass: 2
   m_WheelDampingRate: 9.99999975e-05
   m_ForwardFriction:
-    m_ExtremumSlip: 10
+    m_ExtremumSlip: 1000
     m_ExtremumValue: 1
     m_AsymptoteSlip: 100000
     m_AsymptoteValue: 100000
@@ -639,7 +639,7 @@ WheelCollider:
   m_Mass: 2
   m_WheelDampingRate: 9.99999975e-05
   m_ForwardFriction:
-    m_ExtremumSlip: 10
+    m_ExtremumSlip: 1000
     m_ExtremumValue: 1
     m_AsymptoteSlip: 100000
     m_AsymptoteValue: 100000
@@ -786,7 +786,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mass
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_AngularYLimit.limit

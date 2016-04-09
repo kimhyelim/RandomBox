@@ -249,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 477296}
@@ -615,7 +615,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137882}
   serializedVersion: 2
-  m_Mass: 250
+  m_Mass: 300
   m_Drag: .00999999978
   m_AngularDrag: .00999999978
   m_UseGravity: 1
@@ -649,7 +649,7 @@ MonoBehaviour:
   posType: 0
   body: {fileID: 5487488}
   joint: {fileID: 15372250}
-  offsetFromTarget: {x: 0, y: .550000012, z: -1.25}
+  offsetFromTarget: {x: 0, y: .5, z: -1.25}
   left: {fileID: 14633132}
   right: {fileID: 14693698}
   leftMeshTrans: {fileID: 485006}
@@ -671,7 +671,7 @@ WheelCollider:
   m_Mass: 2
   m_WheelDampingRate: 9.99999975e-05
   m_ForwardFriction:
-    m_ExtremumSlip: 10
+    m_ExtremumSlip: 1000
     m_ExtremumValue: 1
     m_AsymptoteSlip: 100000
     m_AsymptoteValue: 100000
@@ -700,7 +700,7 @@ WheelCollider:
   m_Mass: 2
   m_WheelDampingRate: 9.99999975e-05
   m_ForwardFriction:
-    m_ExtremumSlip: 10
+    m_ExtremumSlip: 1000
     m_ExtremumValue: 1
     m_AsymptoteSlip: 100000
     m_AsymptoteValue: 100000
@@ -722,7 +722,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -.200000003, z: 2}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1, z: -1.5}
+  m_ConnectedAnchor: {x: 0, y: .899999976, z: -1.5}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -859,7 +859,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mass
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
@@ -867,7 +867,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 64886d066c16a3845b2af5375a6161c5, type: 2}
     - target: {fileID: 0}
       propertyPath: offsetFromTarget.y
-      value: .550000012
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: offsetFromTarget.z
@@ -880,6 +880,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Anchor.y
       value: -.200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

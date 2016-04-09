@@ -36,51 +36,53 @@ public class HandcartCtrl : MonoBehaviour {
 	public Rigidbody Body { get { return body; } }
 	public Vector3 OffsetFromTarget { get { return offsetFromTarget; } }
 
-	void Update() {
+	private Vector3 lastVel;
 
-		left.GetWorldPose( out position, out quat );
+	void Start() {
+		lastVel = body.velocity;
+	}
+
+	void Update() {
+		float gap = ( body.velocity - lastVel ).magnitude;
+		if( gap > 7f ) {
+			Debug.Log("dd : " + gap);
+			Debug.Log("ddd : " + (body.velocity - lastVel));
+		}
+		lastVel = body.velocity;
+
+		left.GetWorldPose(out position, out quat);
 		//leftMeshTrans.position = position;
 		leftMeshTrans.rotation = quat;
 
-		right.GetWorldPose( out position, out quat );
+		right.GetWorldPose(out position, out quat);
 		//rightMeshTrans.position = position;
 		rightMeshTrans.rotation = quat;
 	}
 
-	public void setData(Handcart data) {
+	public void setData( Handcart data ) {
 		this.data = data;
 	}
 
 	public void link( Rigidbody target ) {
-		//	transform.position = target.transform.position;
-		//if( target.CompareTag("Player") ) {
-		//	transform.position = target.transform.position + new Vector3(0f, 1.1f, -2.5f);
-		//	joint.anchor = new Vector3(0f, 0f, 1.5f);
-		//}
-		//else if( target.CompareTag("Handcart") ) {
-		//	transform.position = target.transform.position + new Vector3(0f, 0f, -3f);
-		//	joint.anchor = new Vector3(0f, 0f, 2f); ;
-		//}
-
-		//joint.connectedAnchor = new Vector3( 0f, 0f, -1f );
-
-		transform.position = target.transform.position + offsetFromTarget;
+		transform.position = target.transform.position + target.transform.TransformDirection(offsetFromTarget);
 		joint.connectedBody = target;
 
 	}
 
 	void OnDrawGizmos() {
-		if ( Body == null ) return;
+		if( Body == null ) return;
 
 		var origin = Gizmos.color;
 		Gizmos.color = Color.red;
 
 		var from = transform.position + Vector3.up;
-		Gizmos.DrawLine( from, from + Body.velocity );
+		Gizmos.DrawLine(from, from + Body.velocity);
 
 
 		Gizmos.color = origin;
 	}
 
-
+	//public void OnCollisionEnter( Collision collision ) {
+	//	Debug.Log(collision.impulse);
+	//}
 }

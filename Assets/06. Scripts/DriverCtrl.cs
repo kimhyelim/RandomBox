@@ -133,7 +133,7 @@ public class DriverCtrl : MonoBehaviour {
 			body.velocity = dir * maximum;
 		}
 
-	//	suppress( forward );
+		suppress( forward );
 		
 	}
 

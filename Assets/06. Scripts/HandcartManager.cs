@@ -7,7 +7,7 @@ public static class HandcartManager {
 	
 
 	public static HandcartSet generate( Handcart[] carts ) {
-		Debug.Assert(carts.Length > 0, "count는 0 보다 커야됨.");
+		Debug.Assert(carts.Length > 0, "수레 개수는 0 보다 커야됨.");
 
 		HandcartCtrl[] ret = new HandcartCtrl[carts.Length];
 

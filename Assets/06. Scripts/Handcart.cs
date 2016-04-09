@@ -24,11 +24,19 @@ public class HandcartSet {
 	public HandcartSet( HandcartCtrl[] carts ) {
 		this.carts = carts;
 
-		driver = createDriver(carts[0].transform.position - carts[0].OffsetFromTarget);
+		driver = createDriver(carts[0].transform.position - carts[0].transform.TransformDirection(carts[0].OffsetFromTarget));
 		
 		carts[0].link(driver.body);
 
 		activeDriver(false);
+
+		Rigidbody[] rb = new Rigidbody[carts.Length];
+
+		for( int i = 0; i < carts.Length; ++i ) {
+			rb[i] = carts[i].Body;
+		}
+
+		driver.cars = rb;
 	}
 
 
@@ -54,5 +62,22 @@ public class HandcartSet {
 		driver.enabled = state;
 	}
 
-	
+
+
+	//	public void setPosition( Vector3 pos ) {
+	//		driver.transform.position = pos;
+	//		carts[0].transform.position = driver.transform.position + GameData.Inst.firstHandcartOffset;
+	//		for( int i = 1; i < carts.Length; ++i ) {
+	//			carts[i].transform.position = carts[i - 1].transform.position + GameData.Inst.handcartInerval;
+	//		}
+	//	}
+
+	//	public void rotate( float angle ) {
+	//		driver.transform.Rotate(Vector3.up, angle);
+	//		for( int i = 0; i < carts.Length; ++i ) {
+	//			carts[i].transform.RotateAround(driver.transform.position, Vector3.up, angle);
+	//		}
+
+	//	}
+
 }

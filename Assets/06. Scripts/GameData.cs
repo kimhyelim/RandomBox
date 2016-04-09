@@ -2,12 +2,6 @@
 using System.Collections;
 
 [System.Serializable]
-public class HandcartCtrlData {
-	public Vector3 relativePosition;
-	public Vector3 anchor;
-}
-
-[System.Serializable]
 public class HandcartPosSetData {
 	public HandcartCtrl front, other;
 }
@@ -24,17 +18,9 @@ public class GameData : MonoBehaviour {
 		}
 	}
 
-	public HandcartPosSetData[] handcartPosSetDatas;
-
-	public Vector3 firstHandcartOffset;
-	public Vector3 handcartInerval;
-
-	public HandcartCtrl[] handcarts;
-
-	public GameObject driverDummy;
+	public HandcartPosSetData[] handcartPosSetDatas;	
 	public GameObject driver;
-
-	public HandcartCtrlData[] handcartCtrlDatas;
+	
 	
 
 	// Use this for initialization
