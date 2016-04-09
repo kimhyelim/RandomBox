@@ -2510,6 +2510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ani: {fileID: 11149412}
   body: {fileID: 5490030}
+  colliders: {fileID: 195994}
+  meshs: {fileID: 102618}
   speed: .800000012
   rotSpeed: 2
   mode: 2
@@ -2719,6 +2721,14 @@ Prefab:
       propertyPath: body
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: colliders
+      value: 
+      objectReference: {fileID: 195994}
+    - target: {fileID: 0}
+      propertyPath: meshs
+      value: 
+      objectReference: {fileID: 102618}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118618}

@@ -206,7 +206,7 @@ GameObject:
   - 4: {fileID: 431268}
   - 111: {fileID: 11117468}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2213,7 +2213,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 237db6cb29b4bdf44990f6f6a5a2a540, type: 2}
+  - {fileID: 2100000, guid: 64886d066c16a3845b2af5375a6161c5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2253,7 +2253,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 237db6cb29b4bdf44990f6f6a5a2a540, type: 2}
+  - {fileID: 2100000, guid: 64886d066c16a3845b2af5375a6161c5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

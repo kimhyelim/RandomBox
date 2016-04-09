@@ -3,7 +3,7 @@ using System.Collections;
 
 
 // 걸어다니는 상태에서의 캐릭터의 이동 조작.
-public class PlayerWalk : MonoBehaviour {
+public class WalkCtrl : MonoBehaviour {
 	[SerializeField]
 	private Animation ani;
 
@@ -21,7 +21,16 @@ public class PlayerWalk : MonoBehaviour {
 	private Transform trans;
 
 	bool moveState = false;
-	
+
+
+	void OnEnable() {
+		controller.enabled = true;
+	}
+
+	void OnDisable() {
+		controller.enabled = false;
+	}
+
 	void Awake() {
 		trans = transform;
 		ani.CrossFade( "Idle" );
@@ -30,6 +39,7 @@ public class PlayerWalk : MonoBehaviour {
 
 	void Update() {		
 		if ( controller.isGrounded ) {
+			//Debug.LogFormat("{0}", 1);
 			moveDirection =  - new Vector3( Input.GetAxis( "Horizontal" ), 0, Input.GetAxis( "Vertical" ) );
 			//moveDirection = trans.TransformDirection(moveDirection);
 			moveDirection *= speed;
@@ -43,14 +53,14 @@ public class PlayerWalk : MonoBehaviour {
 		if ( dir.magnitude > 0f )
 			trans.forward = dir;
 
-		if ( moveState == false && new Vector2( moveDirection.x, moveDirection.z ).magnitude > 0f ) {
-			ani.CrossFade( "Walk" );
-			moveState = true;
-		}
-		else if ( moveState && new Vector2( moveDirection.x, moveDirection.z ).magnitude <= 0.1f ) {
-			ani.CrossFade( "Idle" );
-			moveState = false;
-		}
+		//if ( moveState == false && new Vector2( moveDirection.x, moveDirection.z ).magnitude > 0f ) {
+		//	ani.CrossFade( "Walk" );
+		//	moveState = true;
+		//}
+		//else if ( moveState && new Vector2( moveDirection.x, moveDirection.z ).magnitude <= 0.1f ) {
+		//	ani.CrossFade( "Idle" );
+		//	moveState = false;
+		//}
 	}
 	
 	public void OnDrawGizmos() {

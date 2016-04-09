@@ -38,16 +38,20 @@ public class GameMng {
 			return inst;
 		}
 	}
-
-	public PlayerState state;
+	
 	public int money;
 
 	public Item[] items;
 
+	public List< Handcart> handcarts = new List<Handcart>();
+
 	public void init() {
 		items = new Item[5];
 		money = 1000;
-		state = PlayerState.Walk;
+
+		handcarts.Add(new Handcart(0));
+		handcarts.Add(new Handcart(0));
+		handcarts.Add(new Handcart(0));
 	}
 
 

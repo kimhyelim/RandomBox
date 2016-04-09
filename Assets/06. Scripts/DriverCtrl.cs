@@ -9,6 +9,12 @@ public class DriverCtrl : MonoBehaviour {
 	public Rigidbody body;
 
 	[SerializeField]
+	public GameObject colliders;
+
+	[SerializeField]
+	public GameObject meshs;
+
+	[SerializeField]
 	float speed = 150.0f;
 
 	[SerializeField]
@@ -28,8 +34,13 @@ public class DriverCtrl : MonoBehaviour {
 
 	[SerializeField]
 	public Rigidbody[] cars;
-	
-	
+
+	void OnEnable() {
+		meshs.SetActive(true);
+	}
+	void OnDisable() {
+		meshs.SetActive(false);
+	}
 
 	void OnDrawGizmos () {
 		Ray r = new Ray ( transform.position, Vector3.down );
