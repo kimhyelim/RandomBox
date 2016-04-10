@@ -5,9 +5,7 @@ public class PopFish : MonoBehaviour {
 	public Transform pivot;
 
 	public float genRadius =1f;
-	public float genHeght;
-	
-	
+		
 	public void pop( int count, Vector3 veloc) {
 		float maxRot = 30f; //degree
 

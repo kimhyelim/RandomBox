@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 
+/*
+ * 카메라 컨트롤.
+ * 카메라가 플레이어를 따라다니게함.
+ * + 카메라 앞에 방해요소가 있을시 줌 기능 포함.
+ */
+[ExecuteInEditMode]
 public class CameraCtrl : MonoBehaviour {
 
 	public enum Type {

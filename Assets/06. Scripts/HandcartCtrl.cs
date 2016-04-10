@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// 수레의 위치
+// 첫번째 수레는 모델이 달라야하기 때문(손잡이 붙음)에 따로 구분이 필요.
+// Front : 제일 앞 수레.
+// Other : Front를 제외한 나머지.
 public enum HandcartPosType {
 	Front, Other
 }
 
+/*
+ * 수레 게임 오브젝트에게 작용할 수 있는 기능들의 집합.
+ * 다른 리지드바디에 수레 연결 기능.
+ * 충돌시 생선 드랍 처리 기능.
+ * 바퀴 트렌스폼 적용 기능.
+ */
 public class HandcartCtrl : MonoBehaviour {
 
 	[SerializeField]
@@ -71,6 +81,10 @@ public class HandcartCtrl : MonoBehaviour {
 		}
 		lastVel = vel2d;
 
+		setWheelTransform();
+	}
+
+	void setWheelTransform() {
 		left.GetWorldPose(out position, out quat);
 		//leftMeshTrans.position = position;
 		leftMeshTrans.rotation = quat;

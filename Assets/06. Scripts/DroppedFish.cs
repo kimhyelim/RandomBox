@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * 떨어진 생선을 몇초 후 파괴함.
+ */
 public class DroppedFish : MonoBehaviour {
 	public Rigidbody body;
 
@@ -18,12 +21,7 @@ public class DroppedFish : MonoBehaviour {
 			timer = 0f;
 		}
 	}
-
-	//IEnumerator Start() {
-	//	yield return new WaitForSeconds(3.0f);
-	//	DestroyObject(gameObject);
-	//}
-
+	
 	//void OnDrawGizmos() {
 	//	if( body == null ) return;
 

@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+/*
+ * 수레의 한 세트를 관리하기 위한 목적.
+ * 기본적으로 운전자를 생성함. 
+ * (리디지바디나, 조인트의 문제로 처음부터 운전자를 갖고있음 ㅠㅜ )
+ * 탑승시에는 운전자를 활성화, 탑승안할때는 비화성 방식.
+ * 수레들의 위치를 조정하거나 회전가능.
+ */
 public class HandcartSet {
 	public DriverCtrl driver { get; private set; }
 	public HandcartCtrl[] carts { get; private set; }

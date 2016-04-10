@@ -18,17 +18,17 @@ public class GameData : MonoBehaviour {
 		}
 	}
 
-	public HandcartPosSetData[] handcartPosSetDatas;	
-	public GameObject driver;
-	public GameObject dropFish;
+	public HandcartPosSetData[] handcartPosSetDatas;	// 수레 정보. 배열 인덱스 == 수레코드.
+	public GameObject driver; // 운전자 프리펩.
+	public GameObject dropFish; // 떨어질때의 물고기 프리펩.
 	
 	
-
 	// Use this for initialization
 	void Awake () {
 		DontDestroyOnLoad(gameObject);
 	}
 
+	// 해당 코드와 위치타입에 맞는 수레 오브젝트를 반환.
 	public HandcartCtrl getHandcartCtrl(int code, HandcartPosType posType) {
 		if( posType == HandcartPosType.Front )
 			return handcartPosSetDatas[code].front;

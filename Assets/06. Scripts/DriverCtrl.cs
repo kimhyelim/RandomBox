@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
+ * 운전자 컨트롤.
+ * 수레 앞에서 운전을 하는 주체.
+ * 이동, 회전, 애니메니션처리.
+ */ 
 public class DriverCtrl : MonoBehaviour {
 	[SerializeField]
 	public Animation ani;

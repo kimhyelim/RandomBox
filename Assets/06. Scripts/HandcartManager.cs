@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/*
+ * 수레를 관리함.
+ * 수레를 생성하고 파괴함.
+ */
 public static class HandcartManager {
 
 	public static HandcartSet current { get; private set; }

@@ -23,9 +23,9 @@ public enum PlayerState {
 }
 
 
-/* 전역적인 게임 매니저.
+/* 
+ * 전역적인 게임 매니저.
  * 플레이어의 정보, 아이템 등을 가짐.
- * 추후 플레이어 정보는 클래스로 따로 분리할 예정.
  */
 public class GameMng {
 	private static GameMng inst;
