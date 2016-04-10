@@ -104,28 +104,28 @@ public class DriverCtrl : MonoBehaviour {
 			//forces += h * transform.right * rotSpeed;
 			body.AddTorque( 0f, h * rotSpeed, 0f, mode );
 		}
-		else {
-			foreach( Rigidbody c in cars ) {
-				float playerZ = transform.eulerAngles.z / 360f;
-				float carZ = c.transform.eulerAngles.z / 360f;
+		//else {
+		//	foreach( Rigidbody c in cars ) {
+		//		float playerZ = transform.eulerAngles.z / 360f;
+		//		float carZ = c.transform.eulerAngles.z / 360f;
 
-				if ( playerZ > 0.5f ) playerZ -= 1.0f;
-				if ( playerZ < -0.5f ) playerZ += 1.0f;
-				if ( carZ > 0.5f ) carZ -= 1.0f;
-				if ( carZ < -0.5f ) carZ += 1.0f;
+		//		if ( playerZ > 0.5f ) playerZ -= 1.0f;
+		//		if ( playerZ < -0.5f ) playerZ += 1.0f;
+		//		if ( carZ > 0.5f ) carZ -= 1.0f;
+		//		if ( carZ < -0.5f ) carZ += 1.0f;
 
 
 
-				float gap = playerZ - carZ;
-				//Debug.Log(gap);
+		//		float gap = playerZ - carZ;
+		//		//Debug.Log(gap);
 
-				float torque = gap * downFactor;
+		//		float torque = gap * downFactor;
 
-				//torque = c.transform.InverseTransformDirection( torque );
+		//		//torque = c.transform.InverseTransformDirection( torque );
 
-				c.AddTorque( c.transform.forward * torque, ForceMode.VelocityChange);
-			 }
-		}
+		//		c.AddTorque( c.transform.forward * torque, ForceMode.VelocityChange);
+		//	 }
+		//}
 		
 
 		if (body.velocity.magnitude > maximum) {

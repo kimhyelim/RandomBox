@@ -8,8 +8,23 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 411394}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WheelsHubs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &115206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 476140}
+  m_Layer: 9
+  m_Name: Pop Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,7 +38,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 462648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +55,7 @@ GameObject:
   - 4: {fileID: 413950}
   - 33: {fileID: 3340110}
   - 23: {fileID: 2377282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +71,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 477296}
   - 65: {fileID: 6566782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,10 +87,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 412762}
   - 114: {fileID: 11446950}
+  - 114: {fileID: 11497932}
   - 33: {fileID: 3326644}
   - 54: {fileID: 5487488}
   - 153: {fileID: 15372250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Handcart_0_Front
   m_TagString: CART
   m_Icon: {fileID: 0}
@@ -92,7 +108,7 @@ GameObject:
   - 4: {fileID: 485006}
   - 33: {fileID: 3335812}
   - 23: {fileID: 2303278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cart_wheel_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +124,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 453460}
   - 146: {fileID: 14693698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +141,7 @@ GameObject:
   - 4: {fileID: 498642}
   - 33: {fileID: 3327516}
   - 23: {fileID: 2336724}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: c1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +157,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 495820}
   - 146: {fileID: 14633132}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +174,7 @@ GameObject:
   - 4: {fileID: 463820}
   - 33: {fileID: 3362550}
   - 23: {fileID: 2376484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cart_wheel_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +191,7 @@ GameObject:
   - 4: {fileID: 404712}
   - 33: {fileID: 3326802}
   - 23: {fileID: 2345950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: cart_z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +208,7 @@ GameObject:
   - 4: {fileID: 468230}
   - 33: {fileID: 3332720}
   - 23: {fileID: 2379448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +225,7 @@ GameObject:
   - 4: {fileID: 414066}
   - 33: {fileID: 3392510}
   - 23: {fileID: 2353344}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,13 +266,14 @@ Transform:
   m_GameObject: {fileID: 137882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 477296}
   - {fileID: 411394}
   - {fileID: 468230}
   - {fileID: 404712}
   - {fileID: 462648}
+  - {fileID: 476140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &413950
@@ -335,6 +352,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 412762}
   m_RootOrder: 2
+--- !u!4 &476140
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .629999995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 412762}
+  m_RootOrder: 5
 --- !u!4 &477296
 Transform:
   m_ObjectHideFlags: 1
@@ -649,11 +678,28 @@ MonoBehaviour:
   posType: 0
   body: {fileID: 5487488}
   joint: {fileID: 15372250}
-  offsetFromTarget: {x: 0, y: .5, z: -1.25}
+  offsetFromTarget: {x: 0, y: 1, z: -2.5}
   left: {fileID: 14633132}
   right: {fileID: 14693698}
   leftMeshTrans: {fileID: 485006}
   rightMeshTrans: {fileID: 463820}
+  popFish: {fileID: 11497932}
+  maxSpeed: 20
+  maxDropCount: 10
+--- !u!114 &11497932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09fa0fe050722548beca73435dbf33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 476140}
+  genRadius: 1
+  genHeght: .5
 --- !u!146 &14633132
 WheelCollider:
   m_ObjectHideFlags: 1
@@ -722,7 +768,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -.200000003, z: 2}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: .899999976, z: -1.5}
+  m_ConnectedAnchor: {x: 0, y: .899999976, z: 1}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -867,11 +913,11 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 64886d066c16a3845b2af5375a6161c5, type: 2}
     - target: {fileID: 0}
       propertyPath: offsetFromTarget.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: offsetFromTarget.z
-      value: -1.25
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Anchor.z
@@ -884,6 +930,58 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: genRegion.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: genRegion.y
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: genRegion.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: elementScale.x
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: elementScale.y
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: elementScale.z
+      value: .150000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 168202, guid: 8d788b39a9abd8c4d8ebf0439c955b13, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: popFish
+      value: 
+      objectReference: {fileID: 11497932}
+    - target: {fileID: 0}
+      propertyPath: genRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: genHeght
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxDropCount
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

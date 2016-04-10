@@ -25,7 +25,13 @@ public class HandcartCtrl : MonoBehaviour {
 	[SerializeField]
 	private Transform leftMeshTrans, rightMeshTrans;
 
+	[SerializeField]
+	private PopFish popFish;
 
+	[SerializeField]
+	private int maxSpeed;
+	[SerializeField]
+	private int maxDropCount;
 
 	public Handcart data { get; private set; }
 
@@ -36,19 +42,34 @@ public class HandcartCtrl : MonoBehaviour {
 	public Rigidbody Body { get { return body; } }
 	public Vector3 OffsetFromTarget { get { return offsetFromTarget; } }
 
-	private Vector3 lastVel;
+	private Vector2 lastVel;
 
 	void Start() {
-		lastVel = body.velocity;
+		Vector3 vel = body.velocity;
+		lastVel = new Vector2( vel.x, vel.z);
 	}
 
 	void Update() {
-		float gap = ( body.velocity - lastVel ).magnitude;
-		if( gap > 7f ) {
-			Debug.Log("dd : " + gap);
-			Debug.Log("ddd : " + (body.velocity - lastVel));
+		Vector3 vel = body.velocity;
+		Vector2 vel2d = new Vector2( vel.x, vel.z);
+
+
+		Vector2 sub = lastVel - vel2d;
+		Vector3 vec = new Vector3(sub.x, 0f, sub.y);
+		float gap = sub.magnitude / maxSpeed;
+		Mathf.Clamp01(gap);
+
+		if( gap > 0.4f ) {
+			Debug.Log("gap : " + gap + "vec : " + ( vec ));
+			
+			Vector3 xzVec = new Vector3(vec.x, 1f, vec.z);
+			Vector3 cross = Vector3.Cross( vec.normalized, xzVec.normalized);
+			vec = Quaternion.AngleAxis(30f, cross) * vec;
+
+			popFish.pop(Mathf.FloorToInt(maxDropCount * gap), vec);
+			//popFish.pop(Mathf.FloorToInt(20), vec);
 		}
-		lastVel = body.velocity;
+		lastVel = vel2d;
 
 		left.GetWorldPose(out position, out quat);
 		//leftMeshTrans.position = position;

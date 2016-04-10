@@ -6,8 +6,10 @@ using System.Collections;
 public class CameraCtrl : MonoBehaviour {
 
 	public enum Type {
-		BackView, QuarterView
+		BackView,
+		QuarterView
 	}
+
 
 	[SerializeField]
 	Transform target;
@@ -29,10 +31,10 @@ public class CameraCtrl : MonoBehaviour {
 
 	[SerializeField]
 	string obstacleTagName;
+
 	[SerializeField]
 	float minimumDistance;
 	
-
 
 	private Transform trans;
 
@@ -42,6 +44,8 @@ public class CameraCtrl : MonoBehaviour {
 	Vector3 dir; // 타겟의 위치로 부터의 카메라의 방향.
 
 	Quaternion quat; // 회전 임시 변수.
+
+
 
 	void Awake() {
 		trans = transform;

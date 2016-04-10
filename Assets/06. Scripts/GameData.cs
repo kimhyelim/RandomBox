@@ -20,6 +20,7 @@ public class GameData : MonoBehaviour {
 
 	public HandcartPosSetData[] handcartPosSetDatas;	
 	public GameObject driver;
+	public GameObject dropFish;
 	
 	
 
