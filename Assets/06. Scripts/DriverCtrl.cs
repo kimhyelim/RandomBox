@@ -8,7 +8,7 @@ using System.Collections;
  */ 
 public class DriverCtrl : MonoBehaviour {
 	[SerializeField]
-	public Animation ani;
+	public Animator ani;
 
 	[SerializeField]
 	public Rigidbody body;
@@ -56,16 +56,8 @@ public class DriverCtrl : MonoBehaviour {
 		var v= body.velocity;
 		float m = new Vector2( v.x, v.z ).magnitude;
 
-		if ( m > 10f ) {
-			ani.CrossFade( "Run" );
-		}
-		else if( m> 1f) {
-			ani.CrossFade( "Walk" );
-
-		}
-		else {
-			ani.CrossFade( "Idle" );
-		}
+		ani.SetFloat("Speed", v.magnitude/ maximum );
+		
 	}
 
 	// Update is called once per frame

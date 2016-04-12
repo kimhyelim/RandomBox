@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9592b3dab68058343aec851f8dc8257c
-timeCreated: 1459883773
+guid: 7b89f6ecd426d0b45a5483571b3d5932
+timeCreated: 1459883772
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -78,11 +78,11 @@ ModelImporter:
     100140: Bone005
     100142: Object005
     100144: Object007
-    100146: //RootNode
-    100148: tie1
-    100150: tie2
-    100152: tie3
-    100154: tie4
+    100146: tie1
+    100148: tie2
+    100150: tie3
+    100152: tie4
+    100154: //RootNode
     400000: Bip001
     400002: Bip001 Footsteps
     400004: Bip001 Head
@@ -156,14 +156,14 @@ ModelImporter:
     400140: Bone005
     400142: Object005
     400144: Object007
-    400146: //RootNode
-    400148: tie1
-    400150: tie2
-    400152: tie3
-    400154: tie4
+    400146: tie1
+    400148: tie2
+    400150: tie3
+    400152: tie4
+    400154: //RootNode
     4300000: Object005
     4300002: Object007
-    7400000: Run
+    7400000: Walk
     9500000: //RootNode
     11100000: //RootNode
     13700000: Object005
@@ -180,17 +180,16 @@ ModelImporter:
     animationImportErrors: 
     animationImportWarnings: "\nDefault bone length found in this file is different
       form the one found in the source avatar:\n\t'Bip001 L Thigh' : position error
-      = 29.611526 mm\n\t'Bip001 R Thigh' : position error = 25.055977 mm\n\nClip 'Take
+      = 30.555038 mm\n\t'Bip001 R Thigh' : position error = 21.809002 mm\n\nClip 'Take
       001' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip001
       Pelvis' is inbetween humanoid transforms and has rotation animation that will
       be discarded.\n\t'Bip001 Spine' is inbetween humanoid transforms and has rotation
-      animation that will be discarded.\n\t'Bip001 Spine2' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Bip001 Head' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'Bone001'
-      has translation animation that will be discarded.\n\t'Bip001 L Thigh' has translation
-      animation that will be discarded.\n\t'Bip001 R Thigh' has translation animation
-      that will be discarded.\n"
+      animation that will be discarded.\n\t'Bip001 Head' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Bone001' has translation
+      animation that will be discarded.\n\t'Bip001 L Thigh' has translation animation
+      that will be discarded.\n\t'Bip001 R Thigh' has translation animation that will
+      be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -201,10 +200,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Run
+      name: Walk
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 30
       wrapMode: 2
       orientationOffsetY: 0
       level: 0

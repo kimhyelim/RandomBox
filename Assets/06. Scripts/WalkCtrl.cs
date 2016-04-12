@@ -5,7 +5,7 @@ using System.Collections;
 // 걸어다니는 상태에서의 캐릭터의 이동 조작.
 public class WalkCtrl : MonoBehaviour {
 	[SerializeField]
-	private Animation ani;
+	private Animator ani;
 
 
 	[SerializeField]
@@ -19,9 +19,7 @@ public class WalkCtrl : MonoBehaviour {
 
 	private Vector3 moveDirection = Vector3.zero;
 	private Transform trans;
-
-	bool moveState = false;
-
+	
 
 	void OnEnable() {
 		controller.enabled = true;
@@ -33,14 +31,12 @@ public class WalkCtrl : MonoBehaviour {
 
 	void Awake() {
 		trans = transform;
-		ani.CrossFade( "Idle" );
-		moveState = false;
 	}
 
-	void Update() {		
+	void Update() {
 		if ( controller.isGrounded ) {
 			//Debug.LogFormat("{0}", 1);
-			moveDirection =  - new Vector3( Input.GetAxis( "Horizontal" ), 0, Input.GetAxis( "Vertical" ) );
+			moveDirection = -new Vector3( Input.GetAxis( "Horizontal" ), 0, Input.GetAxis( "Vertical" ) );
 			//moveDirection = trans.TransformDirection(moveDirection);
 			moveDirection *= speed;
 		}
@@ -53,14 +49,7 @@ public class WalkCtrl : MonoBehaviour {
 		if ( dir.magnitude > 0f )
 			trans.forward = dir;
 
-		//if ( moveState == false && new Vector2( moveDirection.x, moveDirection.z ).magnitude > 0f ) {
-		//	ani.CrossFade( "Walk" );
-		//	moveState = true;
-		//}
-		//else if ( moveState && new Vector2( moveDirection.x, moveDirection.z ).magnitude <= 0.1f ) {
-		//	ani.CrossFade( "Idle" );
-		//	moveState = false;
-		//}
+		ani.SetBool( "Walk", moveDirection.x != 0f || moveDirection.z != 0f );		
 	}
 	
 	public void OnDrawGizmos() {
